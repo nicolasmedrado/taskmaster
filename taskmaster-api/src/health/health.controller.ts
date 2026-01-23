@@ -14,7 +14,7 @@ export class HealthController {
 
   @Get()
   findAll() {
-    return this.healthService.findAll();
+    return this.healthService.findAll()
   }
 
   @Get(':id')
