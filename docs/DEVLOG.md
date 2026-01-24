@@ -36,18 +36,26 @@
 
 - Conectar `MongoDB`
 - `Docker Compose`
-- Primeira dependência externa real (falhas de conexão e ordem de startup)
+- Primeira dependência externa real
 
 ## 2026-01-23
 
 ### O que foi feito
 
--
+- Criado `docker-compose.yml`
+- Adicionada a variável de ambiente `MONGO_URI` (.env e .env.example)
+- Inicialização do container MongoDB via `Docker Compose`
+- Conexão da API ao `MongoDB` via `MongooseModule`
 
 ### Decisões técnicas
 
--
+- Uso de `Docker Compose` para padronizar o ambiente de desenvolvimento e evitar dependência de instalações locais
+- Uso de `MONGO_URI` via variável de ambiente para permitir múltiplos ambientes sem alterar código
 
 ### Próximo passo
 
--
+- Primeira entidade `Mongo`
+- `Schema` vs `Model` vs `DTO`
+- Por que `Mongo` aceita qualquer coisa
+
+## 2026-01-24
