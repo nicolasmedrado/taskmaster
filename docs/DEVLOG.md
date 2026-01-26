@@ -59,3 +59,21 @@
 - Por que `Mongo` aceita qualquer coisa
 
 ## 2026-01-24
+
+### O que foi feito
+
+- Criação da entidade `Task`
+- Criação do `Schema` com proteção de dados
+- Registro do model no módulo
+- Criação do `CreateTaskDto` com validação
+- Ativação do `ValidationPipe` global
+- Integração definitiva do `class-validator`
+
+### Decisões técnicas
+
+- Uso de DTOs com validação para proteger a borda da aplicação contra dados inválidos
+- Configuração do `ValidationPipe` global para garantir validação automática em todas as rotas
+
+### Próximo passo
+
+- Primeiro endpoint
