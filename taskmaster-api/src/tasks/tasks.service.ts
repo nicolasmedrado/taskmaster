@@ -7,13 +7,15 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TasksService {
+  
   constructor(
     @InjectModel(Task.name)
     private readonly taskModel: Model<TaskDocument>,
   ) {}
   
-  create(createTaskDto: CreateTaskDto) {
-    return 'This action adds a new task';
+  async create(createTaskDto: CreateTaskDto) {
+  const created = await this.taskModel.create(createTaskDto);
+  return created;
   }
 
   async findAll() {

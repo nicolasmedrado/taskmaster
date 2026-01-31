@@ -77,3 +77,24 @@
 ### Próximo passo
 
 - Primeiro endpoint
+
+## 2026-01-25
+
+### O que foi feito
+
+- Injeção do Model no Service
+- Criação do método `create` no Service
+- Implementação do endpoint `POST /tasks` no Controller
+
+### Decisões técnicas
+
+- Manter o Controller fino, delegando a lógica de criação para o Service
+- Centralizar a criação da entidade no Service para facilitar testes e reutilização
+- Delegar o estado inicial da Task ao Schema, evitando controle pelo usuário
+
+### Próximo passo
+
+- GET /tasks
+- Listagem
+- Lean queries
+- Por que retornar documento do Mongo cru pode ser perigoso
