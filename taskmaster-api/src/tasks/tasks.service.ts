@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { Task, TaskDocument } from './entities/task.entity';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { PaginationDto } from './dto/pagination.dto';
 
 @Injectable()
 export class TasksService {
@@ -18,8 +19,14 @@ export class TasksService {
   return created;
   }
 
-  async findAll() {
-  return this.taskModel.find().lean();
+  async findAll({ page, limit }: PaginationDto) {
+    const skip = (page - 1) * limit;
+  
+    return this.taskModel
+      .find()
+      .skip(skip)
+      .limit(limit)
+      .lean();
 }
 
   findOne(id: number) {
