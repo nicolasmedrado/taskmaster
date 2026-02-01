@@ -20,14 +20,21 @@ export class TasksService {
   }
 
   async findAll({ page, limit }: PaginationDto) {
-    const skip = (page - 1) * limit;
-  
-    return this.taskModel
-      .find()
-      .skip(skip)
-      .limit(limit)
-      .lean();
+  const safePage = Math.max(page ?? 1, 1);
+
+  const DEFAULT_LIMIT = 10;
+  const MAX_LIMIT = 50;
+  const safeLimit = Math.min(Math.max(limit ?? DEFAULT_LIMIT, 1), MAX_LIMIT);
+
+  const skip = (safePage - 1) * safeLimit;
+
+  return this.taskModel
+    .find()
+    .skip(skip)
+    .limit(safeLimit)
+    .lean();
 }
+
 
   findOne(id: number) {
     return `This action returns a #${id} task`;
