@@ -120,3 +120,25 @@
 - Limite de registros retornados
 - Uso de query params (`page`, `limit`)
 - Por que `find()` sem limite é perigoso em produção
+
+## 2026-02-01
+
+### O que foi feito
+
+- Implementação de paginação no endpoint `GET /tasks`
+- Criação do DTO de paginação para validação de `page` e `limit`
+- Ajuste do método `findAll` no Service para aplicar defaults e limite máximo
+- Uso de `skip`, `limit` e `lean()` para listagem performática e previsível
+
+### Decisões técnicas
+
+- Validação de parâmetros de paginação no DTO para bloquear entradas inválidas na borda da aplicação
+- Garantia de limites e valores padrão no Service para aplicar a regra de negócio de forma consistente
+- Definição de um limite máximo de resultados para evitar consultas abusivas e consumo excessivo de recursos
+
+### Próximo passo
+
+- Ordenação dos resultados (`sort`)
+- Criação de índices no MongoDB
+- Entender por que ordenar sem índice é lento
+- Ajustar Schema para suportar queries eficientes
