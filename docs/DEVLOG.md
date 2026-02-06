@@ -142,3 +142,29 @@
 - Criação de índices no MongoDB
 - Entender por que ordenar sem índice é lento
 - Ajustar Schema para suportar queries eficientes
+
+## 2026-02-06
+
+### O que foi feito
+
+- Implementação de ordenação segura (`sort`) no endpoint `GET /tasks`
+- Extensão do DTO de paginação para aceitar o parâmetro `sort`
+- Definição de ordenação padrão (`createdAt:desc`) no Service
+- Aplicação de allowlist para campos permitidos de ordenação
+- Criação de índice no MongoDB para suportar o sort padrão
+- Ajuste dos endpoints para uso de `id` como `string`, compatível com MongoDB
+
+### Decisões técnicas
+
+- Validação apenas do **formato** do parâmetro `sort` no DTO, mantendo regras de negócio no Service
+- Uso de allowlist no Service para evitar ordenação por campos não suportados ou sem índice
+- Definição de sort padrão para garantir comportamento determinístico da API
+- Criação de índices alinhados ao contrato da API para evitar sort em memória
+- Correção da tipagem de `id` para evitar inconsistências futuras com `ObjectId`
+
+### Próximo passo
+
+- Implementação de filtros no endpoint `GET /tasks` (ex.: `completed`)
+- Criação de índice composto para filtro + ordenação
+- Inclusão de metadados de paginação na resposta (`total`, `pages`)
+- Uso de `countDocuments` para paginação completa
