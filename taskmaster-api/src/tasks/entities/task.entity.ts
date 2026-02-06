@@ -5,11 +5,14 @@ export type TaskDocument = HydratedDocument<Task>;
 
 @Schema({ timestamps: true })
 export class Task {
-  @Prop({required: true})
+  @Prop({ required: true })
   title: string;
 
-  @Prop({default: false})
+  @Prop({ default: false })
   completed: boolean;
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task);
+
+// default GET /tasks sort support
+TaskSchema.index({ createdAt: -1 });
